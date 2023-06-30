@@ -104,7 +104,7 @@ class LetStatement(Statement):
 
 
 @dataclass
-class LoopExpression(Statement):
+class LoopStatement(Statement):
     init: LetStatement = None
     condition: Expression = None
     iter: Expression = None

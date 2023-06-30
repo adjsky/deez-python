@@ -2,8 +2,10 @@ from nuts_parser import (NutsParser, Lexer)
 from compiler import (Compiler)
 
 input_str = """
-loop (let i = 0) for (i < 4)(i + 1) {
-    2 - 4;
+loop (let i = 123123) for (i < 4)(i + 1) {
+    let variable = 5;
+    variable + 4;
+    i + 2;
 }
 """
 
@@ -18,4 +20,6 @@ for statement in ast.statements:
     print(statement)
     print("===================================================")
 
-print(Compiler.compile(ast))
+compiler = Compiler(ast)
+
+print(compiler.compile())
