@@ -46,7 +46,7 @@ class Compiler:
 
             body += "\t\t{};\n".format(compiled)
 
-        loop = "\t{init};\n\n\twhile ({condition}) {{\n{body}\n\t\t{iter};\n\t}}".format(
+        loop = "\tfor ({init}; {condition}; {iter}) {{\n{body}\t}}".format(
             init=init, condition=condition, iter=iter, body=body)
 
         return loop
