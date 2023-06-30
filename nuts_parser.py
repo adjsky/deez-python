@@ -195,13 +195,13 @@ class NutsParser:
         return stmt
 
     def parse_loop_statement(self) -> ast.LetStatement:
-        expression = ast.LoopStatement(token=self.current_token)
+        statement = ast.LoopStatement(token=self.current_token)
 
         if not self.expect_peek(TokenType.LPAREN):
             return None
 
         self.next_token()
-        expression.init = self.parse_let_statement()
+        statement.init = self.parse_let_statement()
 
         if not self.expect_peek(TokenType.RPAREN):
             return None
@@ -213,7 +213,7 @@ class NutsParser:
             return None
 
         self.next_token()
-        expression.condition = self.parse_expression(Precedence.LOWEST)
+        statement.condition = self.parse_expression(Precedence.LOWEST)
 
         if not self.expect_peek(TokenType.RPAREN):
             return None
@@ -222,15 +222,15 @@ class NutsParser:
             return None
 
         self.next_token()
-        expression.iter = self.parse_expression_statement()
+        statement.iter = self.parse_expression_statement()
 
         if not self.expect_peek(TokenType.RPAREN):
             return None
 
         self.next_token()
-        expression.consequence = self.parse_block_statement()
+        statement.consequence = self.parse_block_statement()
 
-        return expression
+        return statement
 
     def parse_expression_statement(self) -> ast.ExpressionStatement:
         stmt = ast.ExpressionStatement(token=self.current_token)

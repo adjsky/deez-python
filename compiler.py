@@ -18,11 +18,11 @@ class Compiler:
     def compile_statement(self, statement: ast.Statement):
         match statement:
             case ast.LoopStatement():
-                return self.compile_loop_expression(statement)
+                return self.compile_loop_statement(statement)
             case _:
                 raise NotImplementedError
 
-    def compile_loop_expression(self, node: ast.LoopStatement):
+    def compile_loop_statement(self, node: ast.LoopStatement):
         iteration_variable = node.init.name.value
 
         init = self.compile_let_statement(node.init)
